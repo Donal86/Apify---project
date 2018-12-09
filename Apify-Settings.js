@@ -23,6 +23,8 @@ function pageFunction(context) {
                 lng: getValue('lng', $('#mapcontainer').attr('src'))
             }
         };
+        location.coordinates.lat = Number(location.coordinates.lat);
+        location.coordinates.lng = Number(location.coordinates.lng)
         house.location = location;
         var size = {
             parcel_m2: '',
@@ -30,11 +32,14 @@ function pageFunction(context) {
             net_m2: $('div.casella_caratteristica:nth-child(6)').text().replace(/[^\d]/g, ''),
             rooms: $('div.casella_caratteristica:nth-child(3)').text().replace(/[^\d]/g, '')
         };
+        size.net_m2 = Number(size.net_m2);
+        size.rooms = Number(size.rooms);
         house.size = size;
         var price = {
             value: $('.box_prezzo').text().replace(/[^\d]/g, ''),
             currency: "EUR"
         };
+        price.value = Number(price.value);
         house.price = price;
         var description = $('.descrizione').text().replace(/\s\s+/g, '');
         house.description = description;
